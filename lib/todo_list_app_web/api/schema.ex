@@ -18,5 +18,12 @@ defmodule TodoListAppWeb.Api.Schema do
         {:ok, "Hellow world!"}
       end
     end
+
+    # [TodoItem!]!
+    field :todo_items, non_null(list_of(:todo_item)) do
+      resolve(fn _, _ ->
+        {:ok, TodoListApp.Todos.list_items()}
+      end)
+    end
   end
 end
