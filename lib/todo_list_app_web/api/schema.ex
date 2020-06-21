@@ -1,4 +1,4 @@
-defmodule TodoListWeb.Api.Schema do
+defmodule TodoListAppWeb.Api.Schema do
   use Absinthe.Schema
 
   object :todo_item do
