@@ -1,5 +1,6 @@
 defmodule TodoListAppWeb.Api.Schema do
   use Absinthe.Schema
+  alias TodoListApp.Todos
 
   object :todo_item do
     field :id, non_null(:id)
