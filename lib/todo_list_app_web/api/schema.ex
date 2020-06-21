@@ -13,6 +13,22 @@ defmodule TodoListAppWeb.Api.Schema do
     end
   end
 
+  mutation do
+    field :create_todo_item, non_null(:boolean) do
+      arg :content, non_null(:string)
+
+      resolve fn %{content: content}, _  ->
+        case Todos.create_item(%{content: content}) do
+          {:ok, %Todos.Item{}} ->
+            {:ok, true}
+
+          _ ->
+            {:ok, false}
+        end
+      end
+    end
+  end
+
   query do
     field :hello, :string do
       resolve fn _, _ ->
@@ -23,7 +39,7 @@ defmodule TodoListAppWeb.Api.Schema do
     # [TodoItem!]!
     field :todo_items, non_null(list_of(:todo_item)) do
       resolve(fn _, _ ->
-        {:ok, TodoListApp.Todos.list_items()}
+        {:ok, Todos.list_items()}
       end)
     end
   end
