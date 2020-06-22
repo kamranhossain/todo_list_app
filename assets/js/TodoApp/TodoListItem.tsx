@@ -9,7 +9,7 @@ const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
           isCompleted ? "todo_item__toggle--completed" : ""
         }`}
       />
-      <p>{content}</p>
+      <p className="todo_item__content">{content}</p>
     </div>
   );
 };
