@@ -1,10 +1,13 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica", sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+@import "todo_list";
 
-  h1 {
-      font-size: 72px;
-      color: Salmon;
-  }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica", sans-serif;
+
+    h1 {
+        font-size: 72px;
+        color: Salmon;
+    }
 }
