@@ -1,55 +1,55 @@
-const path = require('path');
-const glob = require('glob');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const glob = require("glob");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = (env, options) => {
-  const devMode = options.mode !== 'production';
+  const devMode = options.mode !== "production";
 
   return {
     optimization: {
       minimizer: [
         new TerserPlugin({ cache: true, parallel: true, sourceMap: devMode }),
-        new OptimizeCSSAssetsPlugin({})
-      ]
+        new OptimizeCSSAssetsPlugin({}),
+      ],
     },
     resolve: {
-      extensions: [".js", ".jsx", ".ts", ".tsx"]
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
     entry: {
-      'app': './js/app.tsx'
+      app: "./js/app.tsx",
     },
     output: {
-      filename: '[name].js',
-      path: path.resolve(__dirname, '../priv/static/js'),
-      publicPath: '/js/'
+      filename: "[name].js",
+      path: path.resolve(__dirname, "../priv/static/js"),
+      publicPath: "/js/",
     },
-    devtool: devMode ? 'source-map' : undefined,
+    devtool: devMode ? "source-map" : undefined,
     module: {
       rules: [
         {
           test: /\.(j|t)sx?$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader'
-          }
+            loader: "babel-loader",
+          },
         },
         {
           test: /\.s(c|a)ss$/,
           use: [
             "style-loader",
-            MiniCssExtractPlugin.loader, 
+            MiniCssExtractPlugin.loader,
             "css-loader",
-            "sass-loader"
-          ]
-        }
-      ]
+            "sass-loader",
+          ],
+        },
+      ],
     },
     plugins: [
-      new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-      new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
-    ]
-  }
+      new MiniCssExtractPlugin({ filename: "../css/app.css" }),
+      new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
+    ],
+  };
 };
