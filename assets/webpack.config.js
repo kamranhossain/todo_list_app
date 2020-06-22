@@ -15,6 +15,9 @@ module.exports = (env, options) => {
         new OptimizeCSSAssetsPlugin({})
       ]
     },
+    resolve: {
+      extensions: [".js", ".jsx", ".ts", ".tsx"]
+    },
     entry: {
       'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
     },
