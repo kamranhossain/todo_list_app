@@ -1,12 +1,7 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-
-interface TodoItem {
-  id: number | string;
-  content: string;
-  isCompleted: boolean;
-}
+import TodoItem from "./types/TodoItem";
 
 interface TodoItemQueryResult {
   todoItems: TodoItem[];
