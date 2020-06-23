@@ -24,6 +24,7 @@ const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
         className={`todo_item__toggle ${
           isCompleted ? "todo_item__toggle--completed" : ""
         }`}
+        onClick={handleToggle}
       />
       <p className="todo_item__content">{content}</p>
     </div>
