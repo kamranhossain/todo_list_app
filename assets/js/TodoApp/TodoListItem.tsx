@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import TodoItem from "./types/TodoItem";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -13,6 +13,11 @@ const TOGGLE_TODO_ITEM = gql`
 `;
 
 const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
+  const [toggleItem] = useMutation(TOGGLE_TODO_ITEM);
+  const handleToggle = useCallback(() => {
+    toggleItem({ variables: { id } });
+  }, [id, toggleItem]);
+
   return (
     <div className="todo_item">
       <button
