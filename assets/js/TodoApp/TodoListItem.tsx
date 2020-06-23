@@ -26,7 +26,7 @@ const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
         }`}
         onClick={handleToggle}
       />
-      <p className="todo_item__content">{content}</p>
+      <input className="todo_item__content" value={text} onChange={onChange} />
     </div>
   );
 };
