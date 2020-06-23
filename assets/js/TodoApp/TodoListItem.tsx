@@ -1,5 +1,16 @@
 import React from "react";
 import TodoItem from "./types/TodoItem";
+import { useMutation } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
+const TOGGLE_TODO_ITEM = gql`
+  mutation($id: ID!) {
+    toggleTodoItem(id: $id) {
+      id
+      isCompleted
+    }
+  }
+`;
 
 const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
   return (
