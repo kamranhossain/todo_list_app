@@ -24,9 +24,12 @@ const UPDATE_TODO_ITEM = gql`
 const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
   const [text, setText] = useState(content);
   const [toggleItem] = useMutation(TOGGLE_TODO_ITEM);
+  const [updateItem] = useMutation(UPDATE_TODO_ITEM);
+
   const handleToggle = useCallback(() => {
     toggleItem({ variables: { id } });
   }, [id, toggleItem]);
+
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const newText = e.target.value;
@@ -34,6 +37,11 @@ const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
     },
     [setText]
   );
+
+  const onBlur = useCallback(() => {
+    updateItem({ variables: { id, content: text } });
+  }, [text, updateItem]);
+
   return (
     <div className="todo_item">
       <button
