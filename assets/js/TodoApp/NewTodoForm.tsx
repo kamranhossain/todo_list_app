@@ -1,5 +1,16 @@
-import React, { useState } from "react";
-import PlusIcon from "./PlusIcon";
+import React, { useState, FormEvent } from "react";
+import { gql } from "apollo-boost";
+import { useMutation } from "@apollo/react-hooks";
+
+const CREATE_TODO_ITEM = gql`
+  mutation createTodoItem($content: String!) {
+    createTodoItem(content: $content) {
+      id
+      content
+      isCompleted
+    }
+  }
+`;
 
 interface Props {}
 
