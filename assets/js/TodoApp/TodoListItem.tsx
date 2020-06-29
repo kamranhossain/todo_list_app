@@ -21,6 +21,12 @@ const UPDATE_TODO_ITEM = gql`
   }
 `;
 
+const DELETE_TODO_ITEM = gql`
+  mutation deleteTodoItem($id: ID!) {
+    deleteTodoItem(id: $id)
+  }
+`;
+
 const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
   const [text, setText] = useState(content);
   const [toggleItem] = useMutation(TOGGLE_TODO_ITEM);
