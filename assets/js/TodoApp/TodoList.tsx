@@ -8,16 +8,18 @@ interface TodoItemQueryResult {
   todoItems: TodoItem[];
 }
 
-const TodoList = () => {
-  const { data, loading } = useQuery<TodoItemQueryResult>(gql`
-    {
-      todoItems {
-        id
-        content
-        isCompleted
-      }
+export const GET_TODO_ITEMS = gql`
+  {
+    todoItems {
+      id
+      content
+      isCompleted
     }
-  `);
+  }
+`;
+
+const TodoList = () => {
+  const { data, loading } = useQuery<TodoItemQueryResult>(GET_TODO_ITEMS);
 
   return (
     <div className="todo_list">
