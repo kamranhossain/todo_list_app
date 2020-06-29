@@ -16,6 +16,7 @@ interface Props {}
 
 const NewTodoForm = ({}: Props) => {
   const [content, setContent] = useState("");
+  const [createTodo] = useMutation(CREATE_TODO_ITEM);
   return (
     <form className="todo_item new_todo_form">
       <button className="todo_item__toggle"></button>
