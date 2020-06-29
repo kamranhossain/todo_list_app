@@ -17,8 +17,16 @@ interface Props {}
 const NewTodoForm = ({}: Props) => {
   const [content, setContent] = useState("");
   const [createTodo] = useMutation(CREATE_TODO_ITEM);
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (content.trim() !== "") {
+      createTodo({ variables: { content: content.trim() } });
+    }
+  };
+
   return (
-    <form className="todo_item new_todo_form">
+    <form className="todo_item new_todo_form" onSubmit={onSubmit}>
       <button className="todo_item__toggle"></button>
       <input
         className="todo_item__content"
