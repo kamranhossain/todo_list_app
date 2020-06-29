@@ -2,6 +2,7 @@ import React, { useCallback, useState, ChangeEvent } from "react";
 import TodoItem from "./types/TodoItem";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import { GET_TODO_ITEMS } from "./TodoList";
 
 const TOGGLE_TODO_ITEM = gql`
   mutation($id: ID!) {
@@ -31,6 +32,17 @@ const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
   const [text, setText] = useState(content);
   const [toggleItem] = useMutation(TOGGLE_TODO_ITEM);
   const [updateItem] = useMutation(UPDATE_TODO_ITEM);
+  const [deleteItem] = useMutation(DELETE_TODO_ITEM, {
+    update(cache) {
+      const { todoItems } = cache.readQuery({ query: GET_TODO_ITEMS });
+      cache.writeQuery({
+        query: GET_TODO_ITEMS,
+        data: {
+          todoItems: todoItems.filter((item: TodoItem) => item.id !== id),
+        },
+      });
+    },
+  });
 
   const handleToggle = useCallback(() => {
     toggleItem({ variables: { id } });
