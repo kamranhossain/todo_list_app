@@ -45,6 +45,11 @@ const TodoListItem = ({ id, content, isCompleted }: TodoItem) => {
   );
 
   const onBlur = useCallback(() => {
+    if (text === "") {
+      deleteItem({ variables: { id } });
+      return;
+    }
+    if (text === content) return;
     updateItem({ variables: { id, content: text } });
   }, [text, updateItem]);
 
