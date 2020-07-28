@@ -35,3 +35,6 @@ npm-debug.log
 
 # Elixir ls
 .elixir_ls
+
+# secrets
+.env

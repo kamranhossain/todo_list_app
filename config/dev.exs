@@ -2,12 +2,14 @@ use Mix.Config
 
 # Configure your database
 config :todo_list_app, TodoListApp.Repo,
-  username: "postgres",
-  password: "postgres",
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("DB_USER") || "postgres",
+  password: System.get_env("DB_PASSWORD") || "",
   database: "todo_list_app_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 10,
+  log_level: :debug
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

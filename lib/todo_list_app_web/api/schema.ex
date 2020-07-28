@@ -1,4 +1,8 @@
 defmodule TodoListAppWeb.Api.Schema do
+  @moduledoc """
+  Absinthe GraphQLSchema
+  """
+
   use Absinthe.Schema
   alias TodoListApp.Todos
 
